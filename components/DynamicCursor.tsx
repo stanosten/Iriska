@@ -7,7 +7,16 @@ import { resolveBackgroundColorAtPoint } from "@/lib/cursorBackground";
 
 const CURSOR_ACTIVE_CLASS = "dynamic-cursor-active";
 const CURSOR_SELECTOR = ".dynamic-cursor-dot";
-const INTERACTIVE_SELECTOR = '[data-cursor-interactive="true"]';
+const INTERACTIVE_SELECTOR = [
+  '[data-cursor-interactive="true"]',
+  "a",
+  "button",
+  "input",
+  "textarea",
+  "select",
+  '[role="button"]',
+  ".cursor-pointer",
+].join(", ");
 const CURSOR_COLORS = ["#111111", "#ffffff", "#A88B4A"];
 
 function hasFinePointer(): boolean {
