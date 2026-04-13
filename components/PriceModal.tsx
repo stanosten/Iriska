@@ -10,6 +10,7 @@ export function openPriceModal() {
 }
 
 export default function PriceModal() {
+  const ANIMATION_MS = 450;
   const [isOpen, setIsOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -23,18 +24,25 @@ export default function PriceModal() {
 
   // Управление монтированием и анимацией (появление/скрытие)
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+    let rafId = 0;
+
     if (isOpen) {
       setIsMounted(true);
-      // Небольшая задержка для того, чтобы DOM обновился перед добавлением классов видимости
-      timeoutId = setTimeout(() => setIsVisible(true), 10);
+      // Переключаем видимость в следующем кадре, чтобы transition отработал корректно.
+      rafId = window.requestAnimationFrame(() => {
+        setIsVisible(true);
+      });
     } else {
       setIsVisible(false);
-      // Ожидаем завершения анимации перед размонтированием (duration-500 = 500ms)
-      timeoutId = setTimeout(() => setIsMounted(false), 500);
+      timeoutId = setTimeout(() => setIsMounted(false), ANIMATION_MS);
     }
-    return () => clearTimeout(timeoutId);
-  }, [isOpen]);
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      if (rafId) window.cancelAnimationFrame(rafId);
+    };
+  }, [isOpen, ANIMATION_MS]);
 
   // Слушаем кастомное событие
   useEffect(() => {
@@ -148,14 +156,14 @@ export default function PriceModal() {
     <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-6">
       {/* Overlay с fade-in анимацией */}
       <div 
-        className={`absolute inset-0 bg-background/80 backdrop-blur-sm cursor-pointer transition-opacity duration-500 ease-in-out motion-reduce:transition-none ${isVisible ? "opacity-100" : "opacity-0"}`}
+        className={`absolute inset-0 bg-background/80 backdrop-blur-sm cursor-pointer transition-opacity duration-[450ms] ease-out motion-reduce:transition-none ${isVisible ? "opacity-100" : "opacity-0 pointer-events-none"}`}
         onClick={closeModal}
         aria-hidden="true"
       />
 
       {/* Modal Body с комбинацией fade-in и translateY/scale */}
       <div 
-        className={`relative w-full max-w-md bg-white rounded-3xl shadow-2xl border border-accent/10 p-8 md:p-10 overflow-hidden transform transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] motion-reduce:transition-none ${isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 -translate-y-8 scale-95"}`}
+        className={`relative w-full max-w-md bg-white rounded-3xl shadow-2xl border border-accent/10 p-8 md:p-10 overflow-hidden transform-gpu will-change-transform will-change-opacity transition-all duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-95"}`}
         role="dialog"
         aria-modal="true"
       >
