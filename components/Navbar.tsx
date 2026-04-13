@@ -9,11 +9,13 @@ interface NavbarProps {
 }
 
 export default function Navbar({ onOpenMenu }: NavbarProps) {
+  const homePath = withBasePath("/");
+
   return (
     <nav className="fixed top-0 left-0 w-full z-40 p-6 md:p-8 lg:p-12 pointer-events-none mix-blend-difference text-white">
       <div className="flex justify-between items-center max-w-[1920px] mx-auto w-full">
         {/* Logo */}
-        <Link href="/" className="pointer-events-auto block group">
+        <Link href={homePath} className="pointer-events-auto block group">
           <Image
             src={withBasePath("/img/iriska_logo.svg")}
             alt="Студия Ири&Ка"
