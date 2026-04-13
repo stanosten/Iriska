@@ -16,6 +16,12 @@ export default function MenuOverlay({
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMounted, setIsMounted] = useState(false);
+  const homePath = withBasePath("/");
+  const handleLogoClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    onClose();
+    window.location.assign(homePath);
+  };
 
   // Mount/Unmount sync
   useEffect(() => {
@@ -45,7 +51,6 @@ export default function MenuOverlay({
     };
   }, [isOpen]);
 
-  const homePath = withBasePath("/");
   const links = [
     { name: "Главная", href: homePath },
     { name: "Маникюр", href: `${homePath}#nails` },
@@ -126,7 +131,7 @@ export default function MenuOverlay({
       aria-label="Навигационное меню"
     >
       <div className="flex justify-between items-center w-full menu-fade">
-        <a href={homePath} onClick={onClose} className="group block">
+        <a href={homePath} onClick={handleLogoClick} className="group block">
           <Image 
             src={withBasePath("/img/iriska_logo.svg")} 
             alt="Студия Ири&Ка" 

@@ -9,12 +9,16 @@ interface NavbarProps {
 
 export default function Navbar({ onOpenMenu }: NavbarProps) {
   const homePath = withBasePath("/");
+  const handleLogoClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    window.location.assign(homePath);
+  };
 
   return (
     <nav className="fixed top-0 left-0 w-full z-40 p-6 md:p-8 lg:p-12 pointer-events-none mix-blend-difference text-white">
       <div className="flex justify-between items-center max-w-[1920px] mx-auto w-full">
         {/* Logo */}
-        <a href={homePath} className="pointer-events-auto block group">
+        <a href={homePath} onClick={handleLogoClick} className="pointer-events-auto block group">
           <Image
             src={withBasePath("/img/iriska_logo.svg")}
             alt="Студия Ири&Ка"
