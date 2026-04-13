@@ -45,11 +45,12 @@ export default function MenuOverlay({
     };
   }, [isOpen]);
 
+  const homePath = withBasePath("/");
   const links = [
-    { name: "Главная", href: "/" },
-    { name: "Маникюр", href: "#nails" },
-    { name: "Ресницы", href: "#lashes" },
-    { name: "Контакты", href: "#contacts" },
+    { name: "Главная", href: homePath },
+    { name: "Маникюр", href: `${homePath}#nails` },
+    { name: "Ресницы", href: `${homePath}#lashes` },
+    { name: "Контакты", href: `${homePath}#contacts` },
   ];
 
   useGSAP(
