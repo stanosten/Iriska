@@ -10,7 +10,7 @@ export function openModal() {
 }
 
 export default function Modal() {
-  const ANIMATION_MS = 450;
+  const ANIMATION_MS = 560;
   const [isOpen, setIsOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -146,14 +146,14 @@ export default function Modal() {
     <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-6">
       {/* Overlay с fade-in анимацией */}
       <div 
-        className={`absolute inset-0 bg-background/80 backdrop-blur-sm cursor-pointer transition-opacity duration-[450ms] ease-out motion-reduce:transition-none ${isVisible ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+        className={`absolute inset-0 bg-background/80 backdrop-blur-sm cursor-pointer transition-opacity duration-[560ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${isVisible ? "opacity-100" : "opacity-0 pointer-events-none"}`}
         onClick={closeModal}
         aria-hidden="true"
       />
 
       {/* Modal Body с комбинацией fade-in и translateY/scale */}
       <div 
-        className={`relative w-full max-w-md bg-white rounded-3xl shadow-2xl border border-accent/10 p-8 md:p-10 overflow-hidden transform-gpu will-change-transform will-change-opacity transition-all duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-95"}`}
+        className={`relative w-full max-w-md bg-white rounded-3xl shadow-2xl border border-accent/10 p-8 md:p-10 overflow-hidden transform-gpu will-change-transform will-change-opacity transition-all duration-[560ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none ${isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-6 scale-[0.96]"}`}
         role="dialog"
         aria-modal="true"
       >
