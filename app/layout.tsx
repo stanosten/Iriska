@@ -35,6 +35,8 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://api-maps.yandex.ru" />
         <link rel="dns-prefetch" href="https://api-maps.yandex.ru" />
+        <link rel="icon" href={`${basePath}/img/iriska_logo.svg`} type="image/svg+xml" />
+        <link rel="shortcut icon" href={`${basePath}/img/iriska_logo.svg`} type="image/svg+xml" />
         <link rel="preload" href={`${basePath}/img/hero_photo1.webp`} as="image" type="image/webp" />
         <link rel="preload" href={`${basePath}/img/hero_photo2.webp`} as="image" type="image/webp" />
       </head>
