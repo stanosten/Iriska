@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import AnimatedCounter from "./AnimatedCounter";
+import { withBasePath } from "@/lib/basePath";
 
 export default function WhyChooseUs() {
   return (
@@ -71,7 +72,7 @@ export default function WhyChooseUs() {
           <figure className="flex-1 order-2 lg:order-2 w-full m-0" data-reveal="scale" data-reveal-duration="1000ms" data-reveal-delay="300ms">
             <div className="relative w-full h-[320px] md:h-[440px]">
               <Image
-                src="/img/studio.webp"
+                src={withBasePath("/img/studio.webp")}
                 alt="Уютный интерьер студии Ири&Ка с мастерами за работой"
                 fill
                 className="rounded-3xl shadow-xl object-cover"

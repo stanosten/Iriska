@@ -6,6 +6,7 @@ import Image from "next/image";
 import MagneticButton from "./MagneticButton";
 import { openModal } from "./Modal";
 import { scrollToSection } from "@/lib/heroCursor";
+import { withBasePath } from "@/lib/basePath";
 
 export default function Hero() {
   const handleImageClick = (e: MouseEvent<HTMLAnchorElement>, type: "nails" | "lashes") => {
@@ -65,7 +66,7 @@ export default function Hero() {
             data-reveal-duration="1000ms"
           >
             <Image
-              src="/img/hero_photo1.webp"
+              src={withBasePath("/img/hero_photo1.webp")}
               alt="Маникюр в студии Ири&Ка"
               fill
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
@@ -87,7 +88,7 @@ export default function Hero() {
             data-reveal-duration="1000ms"
           >
             <Image
-              src="/img/hero_photo2.webp"
+              src={withBasePath("/img/hero_photo2.webp")}
               alt="Наращивание ресниц в студии Ири&Ка"
               fill
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"

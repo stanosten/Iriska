@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { withBasePath } from "@/lib/basePath";
 
 const portfolioData = [
   {
@@ -63,7 +64,7 @@ export default function Portfolio() {
     if (preloadedImagesRef.current.has(src)) return;
     const image = new window.Image();
     image.decoding = "async";
-    image.src = src;
+    image.src = withBasePath(src);
     preloadedImagesRef.current.add(src);
   }, []);
 
@@ -202,7 +203,7 @@ export default function Portfolio() {
                   >
                     <figure className="w-full h-full m-0 relative flex items-center justify-center">
                       <Image
-                        src={item.src}
+                        src={withBasePath(item.src)}
                         alt={item.alt}
                         fill
                         loading="lazy"
@@ -278,7 +279,7 @@ export default function Portfolio() {
                 className={`relative w-full h-full max-w-6xl max-h-[90vh] transition-all duration-[400ms] ease-out transform-gpu will-change-transform will-change-opacity motion-reduce:transition-none ${isLightboxVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"}`}
               >
               <Image 
-                src={selectedImage.src}
+                src={withBasePath(selectedImage.src)}
                 alt={selectedImage.alt}
                 fill
                 priority

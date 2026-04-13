@@ -5,6 +5,7 @@ import { Droplet, ShieldCheck, Sparkles } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 import { openModal } from "./Modal";
 import { openPriceModal } from "./PriceModal";
+import { withBasePath } from "@/lib/basePath";
 
 export default function Nails() {
   return (
@@ -16,7 +17,7 @@ export default function Nails() {
       {/* Background image */}
       <div className="absolute inset-0 w-full h-full -z-10 opacity-10">
         <Image
-          src="/img/manikur.webp"
+          src={withBasePath("/img/manikur.webp")}
           alt="Фон маникюр"
           fill
           className="object-cover"

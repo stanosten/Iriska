@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { withBasePath } from "@/lib/basePath";
 
 interface NavbarProps {
   onOpenMenu: () => void;
@@ -14,7 +15,7 @@ export default function Navbar({ onOpenMenu }: NavbarProps) {
         {/* Logo */}
         <Link href="/" className="pointer-events-auto block group">
           <Image
-            src="/img/iriska_logo.svg"
+            src={withBasePath("/img/iriska_logo.svg")}
             alt="Студия Ири&Ка"
             width={120}
             height={50}

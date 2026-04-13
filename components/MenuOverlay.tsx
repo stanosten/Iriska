@@ -5,6 +5,7 @@ import Image from "next/image";
 import { X, ArrowRight } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { withBasePath } from "@/lib/basePath";
 
 export default function MenuOverlay({
   isOpen,
@@ -126,7 +127,7 @@ export default function MenuOverlay({
       <div className="flex justify-between items-center w-full menu-fade">
         <div className="group block">
           <Image 
-            src="/img/iriska_logo.svg" 
+            src={withBasePath("/img/iriska_logo.svg")} 
             alt="Студия Ири&Ка" 
             width={120} 
             height={50} 

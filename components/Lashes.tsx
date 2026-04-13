@@ -6,6 +6,7 @@ import { Eye, CheckCircle2 } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 import { openModal } from "./Modal";
 import { openPriceModal } from "./PriceModal";
+import { withBasePath } from "@/lib/basePath";
 
 const services = [
   {
@@ -34,7 +35,7 @@ export default function Lashes() {
     // Preload images for smooth transition
     services.forEach((service, index) => {
       const img = new window.Image();
-      img.src = service.image;
+      img.src = withBasePath(service.image);
       img.onload = () => setLoadedImages((prev) => ({ ...prev, [index]: true }));
       img.onerror = () => setErrorImages((prev) => ({ ...prev, [index]: true }));
     });
@@ -84,7 +85,7 @@ export default function Lashes() {
               return (
                 <Image
                   key={service.image}
-                  src={service.image}
+                  src={withBasePath(service.image)}
                   alt={`Наращивание ресниц: ${service.title}`}
                   fill
                   className={`object-cover transition-opacity duration-700 ease-in-out ${isActive ? "opacity-100 z-10" : "opacity-0 z-0"} ${loadedImages[index] ? "blur-0" : "blur-sm"}`}
