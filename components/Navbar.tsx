@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { withBasePath } from "@/lib/basePath";
 
 interface NavbarProps {
@@ -9,11 +8,13 @@ interface NavbarProps {
 }
 
 export default function Navbar({ onOpenMenu }: NavbarProps) {
+  const homePath = withBasePath("/");
+
   return (
     <nav className="fixed top-0 left-0 w-full z-40 p-6 md:p-8 lg:p-12 pointer-events-none mix-blend-difference text-white">
       <div className="flex justify-between items-center max-w-[1920px] mx-auto w-full">
         {/* Logo */}
-        <Link href="/" className="pointer-events-auto block group">
+        <a href={homePath} className="pointer-events-auto block group">
           <Image
             src={withBasePath("/img/iriska_logo.svg")}
             alt="Студия Ири&Ка"
@@ -22,7 +23,7 @@ export default function Navbar({ onOpenMenu }: NavbarProps) {
             className="w-24 md:w-32 brightness-0 invert transition-all duration-500 ease-in-out will-change-transform group-hover:scale-110 group-hover:rotate-[-2deg] group-hover:-translate-y-1 group-hover:opacity-80"
             unoptimized
           />
-        </Link>
+        </a>
 
         {/* Menu Button */}
         <div className="pointer-events-auto">

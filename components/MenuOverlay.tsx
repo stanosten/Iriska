@@ -126,7 +126,7 @@ export default function MenuOverlay({
       aria-label="Навигационное меню"
     >
       <div className="flex justify-between items-center w-full menu-fade">
-        <div className="group block">
+        <a href={homePath} onClick={onClose} className="group block">
           <Image 
             src={withBasePath("/img/iriska_logo.svg")} 
             alt="Студия Ири&Ка" 
@@ -135,7 +135,7 @@ export default function MenuOverlay({
             className="w-24 md:w-32 invert transition-transform duration-500 group-hover:scale-110 group-hover:rotate-2"
             unoptimized
           />
-        </div>
+        </a>
         <button
           type="button"
           onClick={onClose}
